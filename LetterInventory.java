@@ -1,4 +1,5 @@
 //made by Cece, Derek, Rashaan, and Nathan
+//you cannot run it by itself as there is no main method, so you might as well make a test class for it.
 
 public class LetterInventory {
     public static final int LETTERS = 26;
@@ -102,8 +103,8 @@ public class LetterInventory {
         }
     }
 
-    public LetterInventory subtract (LetterInventory other) {
-        LetterInventory result = new LetterInventory();
+    public LetterInventory subtract (LetterInventory other) {//the same as addition but with subtraction and only the letters from the first word(s) remaining
+        LetterInventory result = new LetterInventory();//like if "like" was the first one and "Lock" was being subtracted from it, "ei" would be the answer
         if (other.isEmpty()) {
             result.isEmpty = this.isEmpty;
             result.totalSize = this.totalSize;
@@ -134,3 +135,4 @@ public class LetterInventory {
 
 //
 
+// 11-14 -3         lettersRemoved = 5      11 - lettersRemoved = 6
