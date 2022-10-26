@@ -1,6 +1,13 @@
-//made by Cece, Derek, Rashaan, and Nathan
-//you cannot run it by itself as there is no main method, so you might as well make a test class for it.
+/*
+Rashaan, Nathan, Derek and Cece
+10/25/2022
+CS 145
+Lab 3: Letter Inventory
+LetterInventory.java
+*/
 
+// A class that can be used to keep track of
+// an inventory of letters of the alphabet
 public class LetterInventory {
     public static final int LETTERS = 26;
     private boolean isEmpty;  // tracking if the inventory is empty
@@ -18,13 +25,16 @@ public class LetterInventory {
                 char character = letterString.charAt(i);
                 // if the character is a letter
                 if (character >= 97 && character <= 122) {
-                    letterCount[character - 97] = letterCount[character - 97] + 1;
-                    totalSize++; // increment the total size of the letter inventory
+                    letterCount[character - 97] = 
+                                            letterCount[character - 97] + 1;
+                    // increment the total size of the letter inventory
+                    totalSize++; 
                 }
             }
         }
     }
 
+    // 0 argument constructor
     public LetterInventory() {
         this.isEmpty = true;
         this.totalSize = 0;
@@ -37,8 +47,7 @@ public class LetterInventory {
         if (letter >= 97 && letter <= 122) {
             return letterCount[letter - 97];
         } else {
-            return 0;
-
+            throw new IllegalArgumentException("Invalid character");
         }
     }
 
@@ -50,8 +59,7 @@ public class LetterInventory {
             letterCount[letter - 97] = value;
             totalSize = totalSize + (value - oldValue);
         } else {
-            return;
-
+            throw new IllegalArgumentException("Invalid character");
         }
     }
 
@@ -70,7 +78,8 @@ public class LetterInventory {
         if (isEmpty) {
             return "[]";
         } else {
-            // **** loop through the inventory array and concatenate (create) a string with characters from each index
+            // loop through the inventory array and concatenate (create) 
+            // a string with characters from each index
             String characters = "";
             for (int i = 0; i < LETTERS; i++) {
                 int n = letterCount[i];
@@ -103,8 +112,11 @@ public class LetterInventory {
         }
     }
 
-    public LetterInventory subtract (LetterInventory other) {//the same as addition but with subtraction and only the letters from the first word(s) remaining
-        LetterInventory result = new LetterInventory();//like if "like" was the first one and "Lock" was being subtracted from it, "ei" would be the answer
+    /* Given a LetterInventory object, subtracts its containing letters from 
+    this LetterInventory and returns a new LetterInventory object that 
+    contains the remaining letters */
+    public LetterInventory subtract (LetterInventory other) {
+        LetterInventory result = new LetterInventory();
         if (other.isEmpty()) {
             result.isEmpty = this.isEmpty;
             result.totalSize = this.totalSize;
@@ -112,15 +124,18 @@ public class LetterInventory {
             return result;
         } else {
             int lettersRemoved = 0;
-            for (int i = 0; i < LETTERS; i++) {//subtracts letters that are the same between both
+            //subtracts letters that are contained in both
+            for (int i = 0; i < LETTERS; i++) {
                 if (this.letterCount[i] - other.letterCount[i] < 0) {
                     result.letterCount[i] = 0;
                     lettersRemoved += this.letterCount[i];
                 } else {
-                    result.letterCount[i] = this.letterCount[i] - other.letterCount[i];
+                    result.letterCount[i] = this.letterCount[i] 
+                                                - other.letterCount[i];
                     lettersRemoved += other.letterCount[i];
                 }
             }
+            // keeping track of the total letters in this LetterInventory
             if (lettersRemoved >= this.totalSize) {
                 result.isEmpty = true;
             } else {
@@ -130,9 +145,4 @@ public class LetterInventory {
             return result;
         }
     }
-
 }
-
-//
-
-// 11-14 -3         lettersRemoved = 5      11 - lettersRemoved = 6
