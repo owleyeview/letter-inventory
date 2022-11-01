@@ -9,7 +9,7 @@ LetterInventory.java
 // A class that can be used to keep track of
 // an inventory of letters of the alphabet
 public class LetterInventory {
-    public static final int LETTERS = 26;
+    private static final int LETTERS = 26;
     private boolean isEmpty;  // tracking if the inventory is empty
     private int totalSize;    // total letters in the inventory
     private int[] letterCount = new int[LETTERS];
